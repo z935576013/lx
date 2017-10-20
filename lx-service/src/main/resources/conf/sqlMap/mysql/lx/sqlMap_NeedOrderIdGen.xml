@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="NEED_ORDER_ID_GEN">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM NEED_ORDER_ID_GEN WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if orderCode ? exists>AND  ORDER_CODE = :orderCode </#if>
+ 				    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM NEED_ORDER_ID_GEN WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if orderCode ? exists>AND  ORDER_CODE = :orderCode </#if>
+ 		    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM NEED_ORDER_ID_GEN WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if orderCode ? exists>AND  ORDER_CODE = :orderCode </#if>
+ 		    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+	
+	
+	 <!-- 当前日期 -->
+<sql id="SELECT_CURDATE">
+        <![CDATA[
+            SELECT * from NEED_ORDER_ID_GEN where ORDER_DATE=:date
+        ]]>
+    </sql>  
+	
+   
+</sqlMap>

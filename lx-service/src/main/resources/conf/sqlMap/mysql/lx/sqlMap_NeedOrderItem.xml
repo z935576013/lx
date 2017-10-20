@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="NEED_ORDER_ITEM">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM NEED_ORDER_ITEM WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 				    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 				    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 				    <#if num ? exists>AND  NUM = :num </#if>
+ 				    <#if note ? exists>AND  NOTE = :note </#if>
+ 				    <#if deliverStatus ? exists>AND  DELIVER_STATUS = :deliverStatus </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM NEED_ORDER_ITEM WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 		    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 		    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if deliverStatus ? exists>AND  DELIVER_STATUS = :deliverStatus </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM NEED_ORDER_ITEM WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 		    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 		    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if deliverStatus ? exists>AND  DELIVER_STATUS = :deliverStatus </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+   
+</sqlMap>

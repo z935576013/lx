@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="DELIVERY_ORDER">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM DELIVERY_ORDER WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 				    <#if needOrderItemId ? exists>AND  NEED_ORDER_ITEM_ID = :needOrderItemId </#if>
+ 				    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 				    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 				    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 				    <#if deliverCity ? exists>AND  DELIVER_CITY = :deliverCity </#if>
+ 				    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 				    <#if num ? exists>AND  NUM = :num </#if>
+ 				    <#if logisticsCode ? exists>AND  LOGISTICS_CODE = :logisticsCode </#if>
+ 				    <#if deliverDate ? exists>AND  DELIVER_DATE = :deliverDate </#if>
+ 				    <#if batchNum ? exists>AND  BATCH_NUM = :batchNum </#if>
+ 				    <#if productCode ? exists>AND  PRODUCT_CODE = :productCode </#if>
+ 				    <#if note ? exists>AND  NOTE = :note </#if>
+ 				    <#if smsNeed ? exists>AND  SMS_NEED = :smsNeed </#if>
+ 				    <#if smsName ? exists>AND  SMS_NAME = :smsName </#if>
+ 				    <#if smsMobile ? exists>AND  SMS_MOBILE = :smsMobile </#if>
+ 				    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM DELIVERY_ORDER WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 		    <#if needOrderItemId ? exists>AND  NEED_ORDER_ITEM_ID = :needOrderItemId </#if>
+ 		    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 		    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 		    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 		    <#if deliverCity ? exists>AND  DELIVER_CITY = :deliverCity </#if>
+ 		    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if logisticsCode ? exists>AND  LOGISTICS_CODE = :logisticsCode </#if>
+ 		    <#if deliverDate ? exists>AND  DELIVER_DATE = :deliverDate </#if>
+ 		    <#if batchNum ? exists>AND  BATCH_NUM = :batchNum </#if>
+ 		    <#if productCode ? exists>AND  PRODUCT_CODE = :productCode </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if smsNeed ? exists>AND  SMS_NEED = :smsNeed </#if>
+ 		    <#if smsName ? exists>AND  SMS_NAME = :smsName </#if>
+ 		    <#if smsMobile ? exists>AND  SMS_MOBILE = :smsMobile </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM DELIVERY_ORDER WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderId ? exists>AND  NEED_ORDER_ID = :needOrderId </#if>
+ 		    <#if needOrderItemId ? exists>AND  NEED_ORDER_ITEM_ID = :needOrderItemId </#if>
+ 		    <#if productName ? exists>AND  PRODUCT_NAME = :productName </#if>
+ 		    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 		    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 		    <#if deliverCity ? exists>AND  DELIVER_CITY = :deliverCity </#if>
+ 		    <#if spec ? exists>AND  SPEC = :spec </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if logisticsCode ? exists>AND  LOGISTICS_CODE = :logisticsCode </#if>
+ 		    <#if deliverDate ? exists>AND  DELIVER_DATE = :deliverDate </#if>
+ 		    <#if batchNum ? exists>AND  BATCH_NUM = :batchNum </#if>
+ 		    <#if productCode ? exists>AND  PRODUCT_CODE = :productCode </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if smsNeed ? exists>AND  SMS_NEED = :smsNeed </#if>
+ 		    <#if smsName ? exists>AND  SMS_NAME = :smsName </#if>
+ 		    <#if smsMobile ? exists>AND  SMS_MOBILE = :smsMobile </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+   
+   
+   
+   
+ <!-- 查询列表 -->
+<sql id="SELECT_LIST">
+    	<![CDATA[
+    	    SELECT *
+FROM DELIVERY_ORDER WHERE  1=1
+ 		    <#if keyword ? exists>AND (  NEED_ORDER_CODE = :keyword
+ 		    or PRODUCT_NAME = :keyword or SPEC = :keyword or DELIVER_DATE=:keyword
+ 		   	 )
+ 		    </#if>
+ 		    <#if needOrderItemId ? exists>AND  NEED_ORDER_ITEM_ID = :needOrderItemId </#if>
+		  ORDER BY CREATE_TIME DESC
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 查询列表数量 -->
+<sql id="SELECT_LIST_COUNT">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM DELIVERY_ORDER WHERE  1=1
+ 		    <#if keyword ? exists>AND (  NEED_ORDER_CODE = :keyword
+ 		    or PRODUCT_NAME = :keyword or SPEC = :keyword or DELIVER_DATE=:keyword
+ 		   	 )
+ 		    </#if>
+ 		    <#if needOrderItemId ? exists>AND  NEED_ORDER_ITEM_ID = :needOrderItemId </#if>
+    	]]>
+	</sql>  
+   
+</sqlMap>

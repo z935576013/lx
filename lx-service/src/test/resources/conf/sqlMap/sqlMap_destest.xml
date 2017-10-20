@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="EMAIL_TASK001">
+
+ <!-- 根据字段查询 -->
+<sql id="SELECT_TASK_KEY">
+    	<![CDATA[
+			SELECT TASK_KEY as taskKey FROM email_task a ORDER BY a.`CREATE_DTTM` DESC
+			LIMIT 0,1
+    	]]>
+	</sql>
+   
+</sqlMap>

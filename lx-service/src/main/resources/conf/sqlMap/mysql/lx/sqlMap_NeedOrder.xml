@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="NEED_ORDER">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM NEED_ORDER WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 				    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 				    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+ 				    <#if needDate ? exists>AND  NEED_DATE = :needDate </#if>
+ 				    <#if companyName ? exists>AND  COMPANY_NAME = :companyName </#if>
+ 				    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 				    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 				    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 				    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+ 				    <#if note ? exists>AND  NOTE = :note </#if>
+ 				    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM NEED_ORDER WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 		    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 		    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+ 		    <#if needDate ? exists>AND  NEED_DATE = :needDate </#if>
+ 		    <#if companyName ? exists>AND  COMPANY_NAME = :companyName </#if>
+ 		    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 		    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 		    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 		    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM NEED_ORDER WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if needOrderCode ? exists>AND  NEED_ORDER_CODE = :needOrderCode </#if>
+ 		    <#if needCompany ? exists>AND  NEED_COMPANY = :needCompany </#if>
+ 		    <#if orderDate ? exists>AND  ORDER_DATE = :orderDate </#if>
+ 		    <#if needDate ? exists>AND  NEED_DATE = :needDate </#if>
+ 		    <#if companyName ? exists>AND  COMPANY_NAME = :companyName </#if>
+ 		    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 		    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 		    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 		    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+ 		    <#if note ? exists>AND  NOTE = :note </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+	
+	
+	
+	
+ <!-- 列表 -->
+<sql id="SELECT_LIST">
+    	<![CDATA[
+    	     SELECT *
+FROM NEED_ORDER WHERE  1=1
+ 		    <#if keyword ? exists>AND ( NEED_ORDER_CODE = :keyword 
+ 		    	or ORDER_DATE=:keyword or NEED_DATE=:keyword
+ 		    	or ID in (
+ 		    		select NEED_ORDER_ID from NEED_ORDER_ITEM where PRODUCT_NAME = :keyword or SPEC = :keyword 
+ 		    		)
+ 		    	)
+ 		    </#if>
+		ORDER BY CREATE_TIME DESC
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 列表数量 -->
+<sql id="SELECT_LIST_COUNT">
+    	<![CDATA[
+    	     SELECT count(1) NUM
+		FROM NEED_ORDER WHERE  1=1
+ 		    <#if keyword ? exists>AND ( NEED_ORDER_CODE = :keyword 
+ 		    	or ORDER_DATE=:keyword or NEED_DATE=:keyword
+ 		    	or ID in (
+ 		    		select NEED_ORDER_ID from NEED_ORDER_ITEM where PRODUCT_NAME = :keyword or SPEC = :keyword 
+ 		    		)
+ 		    	)
+ 		    </#if>
+    	]]>
+	</sql>  
+   
+</sqlMap>

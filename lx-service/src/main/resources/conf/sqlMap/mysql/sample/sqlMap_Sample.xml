@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="SAMPLE">
+
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT 
+ 			ID, 
+ 			NAME
+FROM SAMPLE WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if name ? exists>AND  NAME = :name </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+   
+</sqlMap>

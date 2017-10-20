@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sdx.lx</groupId>
+		<artifactId>lx-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../lx-parent/pom.xml</relativePath>
+	</parent>
+	<artifactId>lx-service</artifactId>
+	<name>lx-service</name>
+	<description>lx-service</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.sdx.lx</groupId>
+			<artifactId>lx-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sdx.lx</groupId>
+			<artifactId>lx-service-intf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.beust</groupId>
+			<artifactId>jcommander</artifactId>
+			<version>1.12</version>
+		</dependency>
+	</dependencies>
+
+</project>

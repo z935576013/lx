@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="PRODUCT_INFO">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM PRODUCT_INFO WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if type ? exists>AND  TYPE = :type </#if>
+ 				    <#if name ? exists>AND  NAME = :name </#if>
+ 				    <#if kind ? exists>AND  KIND = :kind </#if>
+ 				    <#if num ? exists>AND  NUM = :num </#if>
+ 				    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM PRODUCT_INFO WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if type ? exists>AND  TYPE = :type </#if>
+ 		    <#if name ? exists>AND  NAME = :name </#if>
+ 		    <#if kind ? exists>AND  KIND = :kind </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM PRODUCT_INFO WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if type ? exists>AND  TYPE = :type </#if>
+ 		    <#if name ? exists>AND  NAME = :name </#if>
+ 		    <#if kind ? exists>AND  KIND = :kind </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+	
+	
+	
+ <!-- 根据字段查询 -->
+<sql id="SELECT_LIST">
+    	<![CDATA[
+    	    SELECT *
+FROM PRODUCT_INFO WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if type ? exists>AND  TYPE = :type </#if>
+ 		   <#if name ? exists>AND  NAME like '%${name}%' </#if>
+ 		    <#if kind ? exists>AND  KIND = :kind </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+		 ORDER BY CREATE_TIME DESC
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_LIST_COUNT">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM PRODUCT_INFO WHERE  1=1
+ 		    <#if type ? exists>AND  TYPE = :type </#if>
+ 		    <#if name ? exists>AND  NAME like '%${name}%' </#if>
+ 		    <#if kind ? exists>AND  KIND = :kind </#if>
+ 		    <#if num ? exists>AND  NUM = :num </#if>
+ 		    <#if createTime ? exists>AND  CREATE_TIME = :createTime </#if>
+    	]]>
+	</sql>  
+   
+	
+   
+</sqlMap>

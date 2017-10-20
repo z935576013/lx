@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="CONTACT">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM CONTACT WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 				    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 				    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 				    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM CONTACT WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 		    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 		    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 		    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM CONTACT WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if zipCode ? exists>AND  ZIP_CODE = :zipCode </#if>
+ 		    <#if receiveAddress ? exists>AND  RECEIVE_ADDRESS = :receiveAddress </#if>
+ 		    <#if receiveName ? exists>AND  RECEIVE_NAME = :receiveName </#if>
+ 		    <#if receiveMobile ? exists>AND  RECEIVE_MOBILE = :receiveMobile </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+   
+</sqlMap>

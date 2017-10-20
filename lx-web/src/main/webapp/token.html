@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" charset="utf-8" src="/merak-web-admin/RES/js/base/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/merak-web-admin/RES/js/base/utils.js"></script>
+		<script type="text/javascript" src="/merak-web-admin/RES/js/base/SDXHttpRequest.js"></script>
+	</head>
+	<body>
+		
+		<div>
+				<label for="verifyCode">验证码：</label><input type="text" name="verifyCode" id="verifyCode" />
+				<input type="button" value="登陆" onclick="login() ;"/>
+		</div>
+
+		<script type="text/javascript" charset="utf-8">
+		
+			var token = "" ;
+			var hotelId = 0 ;
+			var companyId = 0 ;
+			
+			$(function() {
+
+				hotelId = Utils.location.valueForParamName('hotelId');
+				companyId = Utils.location.valueForParamName('companyId');
+
+				userToken(hotelId, companyId);
+
+			});
+
+			function userToken(hotelId, companyId) {
+
+				var params = {};
+				params.hotelId = hotelId;
+				params.companyId = companyId;
+
+				var url = "/userToken/getToken.do";
+				SDX.HttpRequest.interceptFailure = false;
+				SDX.HttpRequest.request(params, url, function(data) {
+
+					if (data.isSuccess != "T") {
+
+						alert(data.errorMsg);
+
+					}
+					token = data.token ;
+
+				});
+
+			}
+
+
+			function login() {
+				var pam = {};
+				pam.token = token ;
+				pam.verifyCode = $("#verifyCode").val() ;
+				if(!pam.verifyCode )
+				{
+					alert("请输入验证码") ;
+					
+					return ;
+				}
+
+				var tokenUrl = "/userTokenLogin/login.do";
+				SDX.HttpRequest.context = "/merak-web-protal";
+				SDX.HttpRequest.request(pam, tokenUrl, function(data) {
+
+					if (data.isSuccess != "T") {
+
+						alert(data.errorMsg);
+
+						// return;
+					}
+
+					var landparam = {};
+					landparam.hotelId = hotelId;
+					landparam.companyId = companyId;
+					localStorage.setItem("hotelId", hotelId);
+					localStorage.setItem("companyId", companyId);
+					localStorage.setItem("username", data.username);
+					localStorage.setItem("usernameEn", data.usernameEn);
+					localStorage.setItem("userType", data.userType);
+					localStorage.setItem("userBusinessType", data.userBusinessType);
+
+					SDX.HttpRequest.interceptFailure = true;
+
+					Utils.location.replace('/web/landingPage.html', landparam);
+
+				});
+			}
+
+		</script>
+	</body>
+
+</html>

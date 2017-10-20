@@ -1,0 +1,189 @@
+.heading-primary {
+  font-size: 2em;
+  padding: 2em;
+  text-align: center;
+}
+.accordion dl{ border-bottom:1px solid #f3f3f3; }
+
+
+.accordion dd .s_main{ padding:20px; background:#f2f0f0;}
+.accordion dd .s_main2{ padding:0 0 20px 0; background:#fff;}
+.s_main:after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}
+.s_main li{ float:left; width:240px;  height:245px; padding:0 18px;border-radius:6px; background:#fff; margin:0 20px 20px 0; position:relative;}
+.s_main li p{ line-height:48px; text-align:right;border-bottom:1px solid #f3f3f3;}
+.s_main li p span{float:left;}
+.s_main li p.bz{ text-align:left; border:0; line-height:24px; padding-top:10px;}
+.s_main li p.bz span{float:left; width:100%;}
+.s_main li p.btm{ background:#585960; bottom:0; position:absolute; left:0;width:240px;  height:48px; padding:0 18px; border-radius:0 0 6px 6px;}
+.s_main li p.btm span.y{ float:left; background:url(../img/icon6.png) no-repeat left center; padding-left:30px; color:#6b9af0;}
+.s_main li p.btm span.n{ float:left; background:url(../img/icon7.png) no-repeat left center; padding-left:30px; color:#cdcdcf;}
+.s_main li p.btm a{ color:#cdcdcf;}
+
+.s_main2 .s_text{ line-height:30px; padding-bottom:10px;}
+.s_text li{ color:#333; font-size:14px;}
+.s_text span{ width:80px; text-align:right; margin-right:40px; float:left; color:#898989;}
+
+
+.accordion {
+  position: relative;
+  background-color: #fff;
+  border:1px solid #f3f3f3;border-radius:6px;
+}
+.accordion .a_dt{ height:172px;   position:relative;}
+.accordion .a_dt .dw{ position: absolute;
+  left:20px;
+  top:15px;}
+
+.a_dt2 h3{ line-height:60px; font-size:16px; color:#333; font-weight:bold; padding-left:30px;}
+.a_dt2 h3.y1{ background:url(../img/icon16.png) no-repeat 20px center;}
+.a_dt2 h3.y2{ background:url(../img/icon17.png) no-repeat 20px center;}
+
+.accordionTitle,
+.accordion__Heading {
+  background-color: #c1c1c1;
+  text-align: center;
+  font-weight: 700;
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+
+  width:20px;
+  height:20px;
+  line-height:20px;
+  border-radius:10px;
+
+}
+
+.accordionTitle:before,
+.accordion__Heading:before {
+  content: "▾";
+  font-size: 18px;
+  line-height: 20px;
+  float: left;
+  margin:1px 0 0 4px;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+.accordionTitle:hover,
+.accordion__Heading:hover {
+  background-color:#c1c1c1;
+}
+
+.accordionTitleActive,
+.accordionTitle.is-expanded {
+  background-color: #c1c1c1;
+}
+.accordionTitleActive:before,
+.accordionTitle.is-expanded:before {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.accordionItem {
+  height: auto;
+  overflow: hidden;
+  max-height: 50em;
+  -webkit-transition: max-height 1s;
+  transition: max-height 1s;
+}
+@media screen and (min-width: 48em) {
+  .accordionItem {
+  }
+}
+
+.accordionItem.is-collapsed {
+  max-height: 0;
+}
+
+.no-js .accordionItem.is-collapsed {
+  max-height: auto;
+}
+
+.animateIn {
+  -webkit-animation: accordionIn 0.45s normal ease-in-out both 1;
+          animation: accordionIn 0.45s normal ease-in-out both 1;
+}
+
+.animateOut {
+  -webkit-animation: accordionOut 0.45s alternate ease-in-out both 1;
+          animation: accordionOut 0.45s alternate ease-in-out both 1;
+}
+
+@-webkit-keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+  }
+}
+@keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+  }
+}
+.accordion .a_dt2{ height:60px;   position:relative;}
+.accordion .a_dt2 .dw{  position: absolute;right:20px;top:20px;
+}
+
+.s_main3{ padding:0 20px 20px 20px;}
+.s_main3:after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}
+.s_main3 .s_d { background:#fff; margin-right:20px;border-bottom:0;}
+.s_d dt{ line-height:30px; font-size:14px;}
+
+.sd1{ width:40%;float:left;}
+.sd2{ width:55%; float:right;}
+.sd3{ width:20%; float:left;}
+.sd4{ width:55%; float:left;}
+.sd5{ width:15%; float:left;}
+.sd6{ width:98%; float:left;}
+.s_main3 .jg{ margin-bottom:10px; line-height:30px; font-size:14px;}
+.jg:after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}
+.jg span{ float:left; margin-right:5px; font-size:14px;}
+.jg b{ font-style:italic; color:#333; font-size:14px; float:left; margin-left:20px;}
+.jg em{color:#333; font-size:14px;float:left; margin-left:20px;}

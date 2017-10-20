@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap namespace="USER_INFO">
+
+  <!-- 根据字段删除 -->
+  	<sql id="DELETE_BY_FIELDS">
+    	<![CDATA[
+    	    DELETE FROM USER_INFO WHERE  1=1
+ 				    <#if id ? exists>AND  ID = :id </#if>
+ 				    <#if userName ? exists>AND  USER_NAME = :userName </#if>
+ 				    <#if userPassword ? exists>AND  USER_PASSWORD = :userPassword </#if>
+ 				    <#if company ? exists>AND  COMPANY = :company </#if>
+ 				    <#if userType ? exists>AND  USER_TYPE = :userType </#if>
+    	]]>
+	</sql>
+	
+  
+ <!-- 根据字段查询 -->
+<sql id="SELECT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT *
+FROM USER_INFO WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if userName ? exists>AND  USER_NAME = :userName </#if>
+ 		    <#if userPassword ? exists>AND  USER_PASSWORD = :userPassword </#if>
+ 		    <#if company ? exists>AND  COMPANY = :company </#if>
+ 		    <#if userType ? exists>AND  USER_TYPE = :userType </#if>
+		<#if orderBy ? exists> ORDER BY ${orderBy} </#if>
+	    <#if orderByDesc ? exists> ${orderByDesc} </#if>
+         <#if startIndex ? exists && maxCount ? exists>
+    	LIMIT :startIndex,:maxCount
+		</#if>
+    	]]>
+	</sql>
+  
+ <!-- 根据字段查询数量 -->
+<sql id="SELECT_COUNT_BY_FIELDS">
+    	<![CDATA[
+    	    SELECT COUNT(1) NUM FROM USER_INFO WHERE  1=1
+ 		    <#if id ? exists>AND  ID = :id </#if>
+ 		    <#if userName ? exists>AND  USER_NAME = :userName </#if>
+ 		    <#if userPassword ? exists>AND  USER_PASSWORD = :userPassword </#if>
+ 		    <#if company ? exists>AND  COMPANY = :company </#if>
+ 		    <#if userType ? exists>AND  USER_TYPE = :userType </#if>
+     	<#if groupBy ? exists> GROUP BY ${groupBy} </#if>
+    	]]>
+	</sql>  
+   
+</sqlMap>
